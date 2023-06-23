@@ -8,3 +8,7 @@ It's a college project which idea is create a portable antivirus. This antivirus
 Demonstration 
 
 ![image](https://github.com/kouh4i/r0ckPo1nt/assets/111029189/055f0251-3d1b-4e9d-a530-8071dd548621)
+
+
+To validate our program, we used zPhisher tool to simulate a phishing attack.
+zPhisher: https://github.com/htr-tech/zphisher
