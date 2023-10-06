@@ -14,7 +14,6 @@ file_path = os.path.join(current_dir, "notify.py")
 blacklist_path = os.path.join(current_dir, "blacklist.csv")
 tesseract_dir = os.path.join(current_dir, "Tesseract")
 
-
 def load_blacklist():
     blacklist = []
     with open(blacklist_path, 'r') as file:
@@ -77,18 +76,12 @@ async def main():
     while True:
         if True:
             await asyncio.sleep(3)
-
             capture_task = asyncio.create_task(capture_and_process())
-
             urls_encontradas = await capture_task
-
             url_chunks = [list(urls_encontradas)[i:i+2] for i in range(0, len(urls_encontradas), 2)]
-
             with concurrent.futures.ThreadPoolExecutor() as executor:
                 results = await asyncio.gather(*(loop.run_in_executor(executor, process_urls, urls) for urls in url_chunks))
-
             urls_na_blacklist = [url for sublist in results for url in sublist]
-
             for url in urls_na_blacklist:
                 print("URL encontrada na blacklist: {}".format(url))
                 subprocess.Popen(["start", "", "/B", file_path, url], shell=True, stdin=subprocess.PIPE,
